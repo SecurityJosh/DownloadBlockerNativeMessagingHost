@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,5 +39,19 @@ namespace DownloadBlockerNativeMessagingHost
             Application.Run();
             
         }
+
+        // https://stackoverflow.com/a/58347430
+        public static IEnumerable<int> IndexesOf(this byte[] haystack, byte[] needle, int startIndex = 0, bool includeOverlapping = false)
+        {
+            int matchIndex = haystack.AsSpan(startIndex).IndexOf(needle);
+            while (matchIndex >= 0)
+            {
+                yield return startIndex + matchIndex;
+                startIndex += matchIndex + (includeOverlapping ? 1 : needle.Length);
+                matchIndex = haystack.AsSpan(startIndex).IndexOf(needle);
+            }
+        }
     }
+
+
 }

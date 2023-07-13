@@ -5,52 +5,72 @@ using System.Security.Cryptography;
 using System.Linq;
 using System.Windows.Forms;
 using System.Collections;
+using System.Diagnostics;
+using System.Collections.Generic;
+using System.IO.Compression;
 
 namespace DownloadBlockerNativeMessagingHost
 {
     internal class FileMetadata
     {
+        static JsonObject GetDefaultJson()
+        {
+            return new JsonObject
+                {
+                    { "sha256", "Unknown"},
+                    {"fileInspectionData" , new JsonObject
+                        {
+                            { "macros", false },
+                            { "zipFileNames",  new JsonArray(JsonValue.Create(new string[0] { }))}
+                        }
+                    }
+                };
+        }
         internal static string CalculateFileMetadata(string filePath)
         {
             if (!File.Exists(filePath))
             {
-                return new JsonObject
-                {
-                    { "sha256", "Unknown"},
-                    {"fileInspectionData", new JsonObject() }
-                }.ToString();
+                return GetDefaultJson().ToString();
             }
 
-            
-
-            using (FileStream fileStream = File.OpenRead(filePath))
+            try
             {
-                var zipFileNamesArray = new JsonArray();
-                var zipFileNames = extractZipFileNames(fileStream);
-                foreach(var zipFileName in zipFileNames)
+                using (FileStream fileStream = File.OpenRead(filePath))
                 {
-                    zipFileNamesArray.Add(zipFileName);
-                }
-               
-                var jsonObject = new JsonObject {
-                { "sha256", SHA256CheckSum(fileStream)},
-                    {"fileInspectionData" , new JsonObject
-                        {
-                            { "macros", doesFileHaveMacros(fileStream) },
-                            { "zipFileNames", zipFileNamesArray}
+                    var macros = doesFileHaveMacros(fileStream);
+                    var zipFileNames = GetZipFileNames(fileStream);
+
+                    var jsonObject = new JsonObject {
+                        { "sha256", SHA256CheckSum(fileStream)},
+                        {"fileInspectionData" , new JsonObject
+                            {
+                                { "macros", macros },
+                                { "zipFileNames",  new JsonArray(JsonValue.Create(zipFileNames))}
+                            }
                         }
-                    }
                 };
-            
-                return jsonObject.ToString();
+                    return jsonObject.ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return GetDefaultJson().ToString();
             }
         }
 
         private static string SHA256CheckSum(FileStream fileStream)
         {
-            using (SHA256 SHA256 = System.Security.Cryptography.SHA256.Create())
+            try
             {
-                return BitConverter.ToString(SHA256.ComputeHash(fileStream)).Replace("-", "").ToLowerInvariant();
+                using (SHA256 SHA256 = System.Security.Cryptography.SHA256.Create())
+                {
+                    return BitConverter.ToString(SHA256.ComputeHash(fileStream)).Replace("-", "").ToLowerInvariant();
+                }
+            }
+            catch
+            {
+                return "Unknown";
             }
         }
 
@@ -125,7 +145,22 @@ namespace DownloadBlockerNativeMessagingHost
             
         }
 
-    private static dynamic byteSearch(FileStream fileStream, byte[] fileHeader, byte[] searchBytes, Func<long, FileStream, Object> callback = null) {
+        static string[] GetZipFileNames(Stream stream)
+        {
+            try
+            {
+                using (var zipArchive = new ZipArchive(stream, ZipArchiveMode.Read, true))
+                {
+                    return zipArchive.Entries.Select(x => x.FullName).ToArray();
+                }
+            }
+            catch
+            {
+                return new string[0] { };
+            }
+        }
+
+        private static dynamic byteSearch(FileStream fileStream, byte[] fileHeader, byte[] searchBytes, Func<long, byte[], Object> callback = null) {
 
             var results = new ArrayList();
 
@@ -144,42 +179,29 @@ namespace DownloadBlockerNativeMessagingHost
                 return false;
             }
 
-            if (buffer.Length != searchBytes.Length)
-            {
-                buffer = new byte[searchBytes.Length];
-            }          
+            buffer = new byte[fileStream.Length - fileHeader.Length];
+            fileStream.Read(buffer, 0, (int)(fileStream.Length - fileHeader.Length));
 
-            while(fileStream.Position <= fileStream.Length - (searchBytes.Length) -1)
-            {
-                fileStream.Read(buffer, 0, searchBytes.Length);
+            var indexes = buffer.IndexesOf(searchBytes, 0, true);
 
-                if (buffer.SequenceEqual(searchBytes))
+            if(callback == null)
+            {
+                return indexes.Count();
+            }
+
+            foreach(int index in indexes)
+            {
+                var result = callback(index, buffer);
+
+                if (result != null)
                 {
-
-                    if (callback == null)
-                    {
-                        return true;
-                    }
-
-                    var result = callback(fileStream.Position - searchBytes.Length, fileStream);
-
-                    if (result != null)
-                    {
-                        results.Add(result);
-                    }
+                    results.Add(result);
                 }
-
-                fileStream.Position = fileStream.Position - (searchBytes.Length - 1);
             }
 
-            if (callback != null)
-            {
-                return results;
-            }
-
-            return false;
+            return results;
         }
-
+        
         private static string[] extractZipFileNames(FileStream fileStream) {
             var ZIP_HEADER = new byte[] { 0x50, 0x4b };
             var START_OF_CENTRAL_DIRECTORY = new byte[] { 0x50, 0x4b, 0x01, 0x02 };
@@ -192,7 +214,6 @@ namespace DownloadBlockerNativeMessagingHost
                 {
                     return new string[] { };
                 }
-
                 return fileNames.Cast<string>().ToArray();
             }
             catch
@@ -201,29 +222,25 @@ namespace DownloadBlockerNativeMessagingHost
             }
         }
 
-        private static dynamic zipFileNames(long fileOffset, FileStream fileStream) {
+        private static dynamic zipFileNames(long fileOffset, byte[] fileBytes) {
             var startOfRecordIndex = fileOffset;
             const int FILE_NAME_LENGTH_OFFSET = 28;
             const int FILE_NAME_OFFSET = 46;
-
-            if (fileStream.Length <= startOfRecordIndex + FILE_NAME_LENGTH_OFFSET + 1) {
+            if (fileBytes.Length <= startOfRecordIndex + FILE_NAME_LENGTH_OFFSET + 1) {
                 return false;
             }
 
             var fileNameLengthStartByte = startOfRecordIndex + FILE_NAME_LENGTH_OFFSET;
 
-            fileStream.Position = fileNameLengthStartByte;
-            
-            long fileNameLength = fileStream.ReadByte() + (256 * fileStream.ReadByte());
+            long fileNameLength = fileBytes[fileNameLengthStartByte] + (256 * fileBytes[fileNameLengthStartByte + 1]);
 
             var fileNameStartByte = startOfRecordIndex + FILE_NAME_OFFSET;
 
-            fileStream.Position = fileNameStartByte;
             var fileNameBuffer = new byte[fileNameLength];
-            fileStream.Read(fileNameBuffer, 0, (int)fileNameLength);
+
+            Array.Copy(fileBytes, fileNameStartByte, fileNameBuffer, 0, fileNameLength);
 
             var fileName = System.Text.Encoding.UTF8.GetString(fileNameBuffer, 0, fileNameBuffer.Length);
-
             return fileName;
         }
     }
