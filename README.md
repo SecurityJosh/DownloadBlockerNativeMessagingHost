@@ -37,7 +37,7 @@ As mentioned above, the Native Messaging Host is only invoked when the extension
     # Download the installation files from https://github.com/SecurityJosh/DownloadBlockerNativeMessagingHost/releases
     .\Install.ps1 -InstallationFiles "DownloadBlockerNativeMessagingHost_1.0.0.zip" -Chrome -Edge
 
-## Changelog
+## Change Log
 
 ### 1.1.0
 * Zip filename extraction is now much more efficient.
