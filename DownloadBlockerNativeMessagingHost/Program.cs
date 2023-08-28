@@ -11,6 +11,21 @@ namespace DownloadBlockerNativeMessagingHost
 {
     internal static class Program
     {
+
+        static string parseFilePath(string jsonMessage)
+        {
+            try
+            {
+                var message = JsonDocument.Parse(jsonMessage);
+
+                return message.RootElement.GetProperty("FilePath").GetString();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -21,9 +36,7 @@ namespace DownloadBlockerNativeMessagingHost
 
             host.StartListening(jsonMessage =>
             {
-                var message = JsonDocument.Parse(jsonMessage);
-
-                var filePath = message.RootElement.GetProperty("FilePath").GetString();
+                var filePath = parseFilePath(jsonMessage);
 
                 var fileMetadata = FileMetadata.CalculateFileMetadata(filePath);
 

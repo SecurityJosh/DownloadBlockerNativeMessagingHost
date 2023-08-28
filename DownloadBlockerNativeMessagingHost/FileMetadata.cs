@@ -5,8 +5,6 @@ using System.Security.Cryptography;
 using System.Linq;
 using System.Windows.Forms;
 using System.Collections;
-using System.Diagnostics;
-using System.Collections.Generic;
 using System.IO.Compression;
 
 namespace DownloadBlockerNativeMessagingHost
@@ -63,6 +61,7 @@ namespace DownloadBlockerNativeMessagingHost
         {
             try
             {
+                fileStream.Seek(0, SeekOrigin.Begin);
                 using (SHA256 SHA256 = System.Security.Cryptography.SHA256.Create())
                 {
                     return BitConverter.ToString(SHA256.ComputeHash(fileStream)).Replace("-", "").ToLowerInvariant();
@@ -122,7 +121,7 @@ namespace DownloadBlockerNativeMessagingHost
             var macroBytes = new byte[] {0x00, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x00}; // [NUL]Attribut[NUL]
 
             try
-            {
+            {   
                 return byteSearch(fileStream, officeHeaderBytes, macroBytes);
             }
             catch(Exception e)
@@ -145,10 +144,17 @@ namespace DownloadBlockerNativeMessagingHost
             
         }
 
-        static string[] GetZipFileNames(Stream stream)
+        static string[] GetZipFileNames(FileStream stream)
         {
             try
             {
+                var ZIP_HEADER = new byte[] { 0x50, 0x4b };
+
+                if(!byteSearch(stream, ZIP_HEADER, new byte[] {}, zipFileNames))
+                {
+                    return new string[0] { };
+                }
+
                 using (var zipArchive = new ZipArchive(stream, ZipArchiveMode.Read, true))
                 {
                     return zipArchive.Entries.Select(x => x.FullName).ToArray();
@@ -172,11 +178,17 @@ namespace DownloadBlockerNativeMessagingHost
 
             var buffer = new byte[fileHeader.Length];
 
-            fileStream.Read(buffer, 0, fileHeader.Length);
+            var bytesRead = fileStream.Read(buffer, 0, fileHeader.Length);
 
             if (!buffer.SequenceEqual(fileHeader))
             {
                 return false;
+            }
+
+            if(searchBytes.Length == 0)
+            {
+                // We're just checking the file header, not any content bytes
+                return true;
             }
 
             buffer = new byte[fileStream.Length - fileHeader.Length];
@@ -186,7 +198,7 @@ namespace DownloadBlockerNativeMessagingHost
 
             if(callback == null)
             {
-                return indexes.Count();
+                return true;
             }
 
             foreach(int index in indexes)

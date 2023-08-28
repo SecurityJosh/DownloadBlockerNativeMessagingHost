@@ -39,5 +39,9 @@ As mentioned above, the Native Messaging Host is only invoked when the extension
 
 ## Change Log
 
+### 1.2.0
+* Zip filename extraction efficiency further improved
+* Fixed a bug which meant SHA256 hashes were being incorrectly computed.
+
 ### 1.1.0
 * Zip filename extraction is now much more efficient.
