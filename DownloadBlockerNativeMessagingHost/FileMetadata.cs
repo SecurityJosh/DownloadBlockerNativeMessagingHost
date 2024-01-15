@@ -19,7 +19,7 @@ namespace DownloadBlockerNativeMessagingHost
                     {"fileInspectionData" , new JsonObject
                         {
                             { "macros", false },
-                            { "zipFileNames",  new JsonArray(JsonValue.Create(new string[0] { }))}
+                            { "zipFileNames",  JsonValue.Create(new string[0] { })}
                         }
                     }
                 };
@@ -43,7 +43,7 @@ namespace DownloadBlockerNativeMessagingHost
                         {"fileInspectionData" , new JsonObject
                             {
                                 { "macros", macros },
-                                { "zipFileNames",  new JsonArray(JsonValue.Create(zipFileNames))}
+                                { "zipFileNames",  JsonValue.Create(zipFileNames)}
                             }
                         }
                 };
