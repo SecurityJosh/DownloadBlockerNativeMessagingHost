@@ -1,0 +1,30 @@
+G:\My Drive\Coding\SecurityJosh\DownloadBlocker\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.csproj.AssemblyReference.cache
+G:\My Drive\Coding\SecurityJosh\DownloadBlocker\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.Properties.Resources.resources
+G:\My Drive\Coding\SecurityJosh\DownloadBlocker\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.csproj.GenerateResource.cache
+G:\My Drive\Coding\SecurityJosh\DownloadBlocker\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.GeneratedMSBuildEditorConfig.editorconfig
+G:\My Drive\Coding\SecurityJosh\DownloadBlocker\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.AssemblyInfoInputs.cache
+G:\My Drive\Coding\SecurityJosh\DownloadBlocker\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.AssemblyInfo.cs
+G:\My Drive\Coding\SecurityJosh\DownloadBlocker\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.csproj.CoreCompileInputs.cache
+G:\My Drive\Coding\SecurityJosh\DownloadBlocker\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.dll
+G:\My Drive\Coding\SecurityJosh\DownloadBlocker\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\refint\DownloadBlockerNativeMessagingHost.dll
+G:\My Drive\Coding\SecurityJosh\DownloadBlocker\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.pdb
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\bin\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.exe
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\bin\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.dll.config
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\bin\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.deps.json
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\bin\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.runtimeconfig.json
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\bin\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.dll
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\bin\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.pdb
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\bin\Release\net6.0-windows\Chrome.NativeMessaging.dll
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.csproj.AssemblyReference.cache
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.Properties.Resources.resources
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.csproj.GenerateResource.cache
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.AssemblyInfoInputs.cache
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.AssemblyInfo.cs
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.csproj.CoreCompileInputs.cache
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.csproj.CopyComplete
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.dll
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\refint\DownloadBlockerNativeMessagingHost.dll
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.pdb
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\DownloadBlockerNativeMessagingHost.genruntimeconfig.cache
+C:\Users\Joshua\Desktop\NativeMessagingHost\NativeMessagingHost\obj\Release\net6.0-windows\ref\DownloadBlockerNativeMessagingHost.dll

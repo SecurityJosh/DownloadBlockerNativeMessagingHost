@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "DownloadBlockerNativeMessagingHost/1.4.0.0": {
+        "dependencies": {
+          "Chrome.NativeMessaging": "1.0.53"
+        },
+        "runtime": {
+          "DownloadBlockerNativeMessagingHost.dll": {}
+        }
+      },
+      "Chrome.NativeMessaging/1.0.53": {
+        "runtime": {
+          "lib/netstandard2.0/Chrome.NativeMessaging.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.53.41974"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DownloadBlockerNativeMessagingHost/1.4.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Chrome.NativeMessaging/1.0.53": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zYdHrWKer3ts+0upSmIZ0gIyaSoUV0yok4CxGll11vcmNdRSwRCWojhEdmpFtblSAzd3Mt1zMThyZ84Im5Q6ow==",
+      "path": "chrome.nativemessaging/1.0.53",
+      "hashPath": "chrome.nativemessaging.1.0.53.nupkg.sha512"
+    }
+  }
+}

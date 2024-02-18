@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "JoBCZRK0XYd7d0EyVusAhwjAUjYf362RsToGRlBUxJnhvDByqtJr6xYQuRv/P1/nLtwKL+Knm7RhUfDftZ2ZGA==",
+  "success": true,
+  "projectFilePath": "G:\\My Drive\\Coding\\SecurityJosh\\DownloadBlocker\\DownloadBlockerNativeMessagingHost\\NativeMessagingHost\\DownloadBlockerNativeMessagingHost.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Joshua\\.nuget\\packages\\chrome.nativemessaging\\1.0.53\\chrome.nativemessaging.1.0.53.nupkg.sha512"
+  ],
+  "logs": []
+}

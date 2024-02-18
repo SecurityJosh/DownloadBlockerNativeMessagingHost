@@ -1,0 +1,102 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0-windows7.0": {
+      "Chrome.NativeMessaging/1.0.53": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Chrome.NativeMessaging.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Chrome.NativeMessaging.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Chrome.NativeMessaging/1.0.53": {
+      "sha512": "zYdHrWKer3ts+0upSmIZ0gIyaSoUV0yok4CxGll11vcmNdRSwRCWojhEdmpFtblSAzd3Mt1zMThyZ84Im5Q6ow==",
+      "type": "package",
+      "path": "chrome.nativemessaging/1.0.53",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "chrome.nativemessaging.1.0.53.nupkg.sha512",
+        "chrome.nativemessaging.nuspec",
+        "lib/netstandard2.0/Chrome.NativeMessaging.dll"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0-windows7.0": [
+      "Chrome.NativeMessaging >= 1.0.53"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Joshua\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.4.0",
+    "restore": {
+      "projectUniqueName": "G:\\My Drive\\Coding\\SecurityJosh\\DownloadBlocker\\DownloadBlockerNativeMessagingHost\\NativeMessagingHost\\DownloadBlockerNativeMessagingHost.csproj",
+      "projectName": "DownloadBlockerNativeMessagingHost",
+      "projectPath": "G:\\My Drive\\Coding\\SecurityJosh\\DownloadBlocker\\DownloadBlockerNativeMessagingHost\\NativeMessagingHost\\DownloadBlockerNativeMessagingHost.csproj",
+      "packagesPath": "C:\\Users\\Joshua\\.nuget\\packages\\",
+      "outputPath": "G:\\My Drive\\Coding\\SecurityJosh\\DownloadBlocker\\DownloadBlockerNativeMessagingHost\\NativeMessagingHost\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Joshua\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0-windows"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0-windows7.0": {
+          "targetAlias": "net7.0-windows",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0-windows7.0": {
+        "targetAlias": "net7.0-windows",
+        "dependencies": {
+          "Chrome.NativeMessaging": {
+            "target": "Package",
+            "version": "[1.0.53, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WindowsForms": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

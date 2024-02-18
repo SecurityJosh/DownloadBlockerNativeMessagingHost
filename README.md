@@ -9,6 +9,7 @@ The Native Messaging Host calculates the same metadata as the extension itself:
 * File SHA256
 * If the file contains office macros
 * The list of filenames inside a .zip archive.
+* If a .zip archive contains any encrypted files.
 
 The metadata calculated by the Native Messaging Host is only sent to the Download Blocker extension.
 
@@ -20,6 +21,8 @@ As mentioned above, the Native Messaging Host is only invoked when the extension
 * HTML Smuggled downloads where a browser or extension bug prevents content-script injection. (e.g. https://bugs.chromium.org/p/chromium/issues/detail?id=1393521)
 
 ## Installation
+
+    Note: Requires .Net 7
 
     Install.ps1 [https://github.com/SecurityJosh/DownloadBlockerNativeMessagingHost]
     Usage:
@@ -38,6 +41,9 @@ As mentioned above, the Native Messaging Host is only invoked when the extension
     .\Install.ps1 -InstallationFiles "DownloadBlockerNativeMessagingHost_1.0.0.zip" -Chrome -Edge
 
 ## Change Log
+
+### 1.4.0
+* Metadata captured now includes whether or not a .zip archive contains any encrypted files.
 
 ### 1.3.0
 * Fixed a bug which meant the data returned to the extension was not in the expected format.
